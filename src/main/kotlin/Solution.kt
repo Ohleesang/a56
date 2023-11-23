@@ -29,15 +29,20 @@ class Solution {
         //2. 한 상자에 담긴 사과의 개수 = m
         //3. 상자의 개수를 구한다.
         //4. 상자로 빼고 나머지 사과의 갯수를 num으로 입력
-        while(num>m){
+        while(num>=m){
             for(i in apple.entries){
                 box += i.value
                 if(box>=m){
-                    box=0 //초기화
                     min =i.key
+                    apple[min]=box-m
+                    box=0 //초기화
                     break
                 }
+                apple[i.key]=0
             }
+            answer += min*m
+            num -= m
+            if(apple[min]==0) apple.remove(min)
         }
         //m의 크기에 따라 계산 하여 answer 에 저장
 
